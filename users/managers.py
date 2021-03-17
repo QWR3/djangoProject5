@@ -2,7 +2,7 @@ from django.contrib.auth.base_user import BaseUserManager
 
 
 class CustomUserManager(BaseUserManager):
-    def crate_user(self, password, email, **extra_kwargs):
+    def create_user(self, password, email, **extra_kwargs):
         if not email:
             raise ValueError("The email must be set")
         email = self.normalize_email(email)
@@ -18,4 +18,4 @@ class CustomUserManager(BaseUserManager):
             raise ValueError("The superuser must have is_staff=True")
         if extra_kwargs.get('is_superuser') is not True:
             raise ValueError("Thr superuser must have is_superuser = True")
-        return self.CreateUser(email, password, **extra_kwargs)
+        return self.create_user(email, password, **extra_kwargs)
